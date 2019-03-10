@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+	<header class="header">
+		<strong>Header:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tortor. Praesent dictum, libero ut tempus dictum, neque eros elementum mauris, quis mollis arcu velit ac diam. Etiam neque. Quisque nec turpis. Aliquam arcu nulla, dictum et, lacinia a, mollis in, ante. Sed eu felis in elit tempor venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut ultricies porttitor purus. Proin non tellus at ligula fringilla tristique. Fusce vehicula quam. Curabitur vel tortor vitae pede imperdiet ultrices. Sed tortor.
+	</header><!-- .header-->
+
+	<div class="middle">
+
+		<div class="container">
+			<main class="content">
+				<strong>Content:</strong> Sed placerat accumsan ligula. Aliquam felis magna, congue quis, tempus eu, aliquam vitae, ante. Cras neque justo, ultrices at, rhoncus a, facilisis eget, nisl. Quisque vitae pede. Nam et augue. Sed a elit. Ut vel massa. Suspendisse nibh pede, ultrices vitae, ultrices nec, mollis non, nibh. In sit amet pede quis leo vulputate hendrerit. Cras laoreet leo et justo auctor condimentum. Integer id enim. Suspendisse egestas, dui ac egestas mollis, libero orci hendrerit lacus, et malesuada lorem neque ac libero. Morbi tempor pulvinar pede. Donec vel elit.
+			</main><!-- .content -->
+		</div><!-- .container-->
+
+		<aside class="right-sidebar">
+				<form>
+					Виберіть колір фону сторінки
+					<select name="" id="myColor" onchange="checkColor()">
+						<option value="" selected disabled hidden>Виберіть тут</option>
+						<option value="steelblue">Голубий</option>
+						<option value="white">Білий</option>
+						<option value="lightgreen">Зелений</option>
+					</select> <br><br>
+					<p>Виберіть розмір шрифту</p><br>
+					<input type="range" name="" id="rangeFonts" min="8" max="25" step="1" oninput="checkRange()">
+					<p id="checkFont"></p>
+				</form>
+		</aside><!-- .right-sidebar -->
+
+	</div><!-- .middle-->
+
+</div><!-- .wrapper -->
+
+<footer class="footer">
+	<strong>Footer:</strong> Mus elit Morbi mus enim lacus at quis Nam eget morbi. Et semper urna urna non at cursus dolor vestibulum neque enim. Tellus interdum at laoreet laoreet lacinia lacinia sed Quisque justo quis. Hendrerit scelerisque lorem elit orci tempor tincidunt enim Phasellus dignissim tincidunt. Nunc vel et Sed nisl Vestibulum odio montes Aliquam volutpat pellentesque. Ut pede sagittis et quis nunc gravida porttitor ligula.
+</footer><!-- .footer -->
+
+
+<script>
+	if (window.localStorage.pageColor) {
+			document.body.style.backgroundColor = window.localStorage.pageColor;
+			let sel = document.getElementById("myColor").selectedIndex;
+			let options = document.getElementById("myColor").options;
+			let selectedColor = options[sel].value;
+			options[sel].value = window.localStorage.pageColor;
+		}
+	
+	if (window.localStorage.pageFonts) {
+		document.body.style.fontSize = window.localStorage.pageFonts;
+		document.getElementById("checkFont").innerHTML = window.localStorage.pageFonts;
+		let rngFont = document.getElementById("rangeFonts");
+		rngFont.value = parseInt(document.getElementById("checkFont").innerHTML);
+	}
+	
+
+	function checkColor(){
+		let sel = document.getElementById("myColor").selectedIndex;
+		let options = document.getElementById("myColor").options;
+		let selectedColor = options[sel].value;
+		window.localStorage.pageColor = selectedColor;
+		document.body.style.backgroundColor = selectedColor;
+	}
+
+	function checkRange(){
+		let rngFont = document.getElementById("rangeFonts");
+		let chFont = document.getElementById("checkFont");
+		chFont.innerHTML = rngFont.value + 'px'; 
+		let bodyFonts = document.body;
+		let style = window.getComputedStyle(bodyFonts, null).getPropertyValue('font-size');
+		let fontSize = parseFloat(style); 
+		bodyFonts.style.fontSize = rngFont.value + 'px';
+		selectedFont = bodyFonts.style.fontSize;
+		window.localStorage.pageFonts = selectedFont;
+	}
+
+	
+
+
+	
+</script>
+</body>
+</html>
